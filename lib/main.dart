@@ -96,8 +96,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void heavyLoop() {
+    var latest = 0;
     for (var i = 0; i < 1000000; i++) {
-      final result = i ^ Random().nextInt(1000000);
+      latest = i ^ Random().nextInt(1000000);
     }
+    // ignore: avoid_print
+    print(latest);
   }
 }
