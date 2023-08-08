@@ -49,13 +49,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter--;
-    });
-  }
+  String _timeTaken = '';
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Text(
-            'This is not fine $_counter',
+            'This is not fine $_timeTaken',
             style: const TextStyle(
               fontSize: 48,
               color: Colors.white,
@@ -88,6 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
           heavyLoop();
           timer.stop();
           print('Time taken: ${timer.elapsed}');
+          setState(() {
+            _timeTaken = timer.elapsed.toString();
+          });
         },
         tooltip: 'Shorebird',
         child: const Icon(Icons.add),
@@ -97,8 +94,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void heavyLoop() {
     var latest = 0;
-    for (var i = 0; i < 1000000; i++) {
-      latest = i ^ Random().nextInt(1000000);
+    for (var i = 0; i < 1000000000; i++) {
+      latest += i ^ Random().nextInt(1000000);
     }
     // ignore: avoid_print
     print(latest);
