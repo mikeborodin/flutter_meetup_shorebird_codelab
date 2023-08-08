@@ -1,3 +1,4 @@
+import 'package:example/screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -57,19 +58,19 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.orange,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-          height: 300,
+            height: 300,
             child: Image.network(
               'https://i.giphy.com/media/g79am6uuZJKSc/giphy.webp',
             ),
           ),
-           Text(
+          Text(
             'This is fine $_counter',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 48,
               color: Colors.white,
             ),
@@ -77,7 +78,13 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const SeparateFileScreen(),
+            ),
+          );
+        },
         tooltip: 'Shorebird',
         child: const Icon(Icons.add),
       ),
