@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:example/screen.dart';
 import 'package:flutter/material.dart';
 
@@ -58,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orange,
+      backgroundColor: Colors.red,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -69,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Text(
-            'This is fine $_counter',
+            'This is not fine $_counter',
             style: const TextStyle(
               fontSize: 48,
               color: Colors.white,
@@ -79,15 +81,23 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const SeparateFileScreen(),
-            ),
-          );
+          final timer = Stopwatch();
+          timer.start();
+          // write a heavy operation here
+          // like a big loop
+          heavyLoop();
+          timer.stop();
+          print('Time taken: ${timer.elapsed}');
         },
         tooltip: 'Shorebird',
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  void heavyLoop() {
+    for (var i = 0; i < 1000000; i++) {
+      final result = i ^ Random().nextInt(1000000);
+    }
   }
 }
